@@ -4,20 +4,12 @@ import { type NormalizedUser } from "../../../utils/normalize-users"
 import type { User } from "../../../data/types"
 import type { ColumnDef } from "@tanstack/react-table"
 import { Button } from "@mantine/core"
+import { heavyComputation } from "../utils/heavy-computation"
 
 interface UserTableProps {
     data: NormalizedUser
     isLoading: boolean
     onSelectUser: (userId: string) => void
-}
-
-function heavyComputation(user: User) {
-    let sum = 0
-    const str = user.name + user.email
-    for (let i = 0; i < str.length; i++) {
-        sum += str.charCodeAt(i) ** 3
-    }
-    return sum % 1000
 }
 
 const ScoreCell = memo(({ user }: { user: User }) => {
