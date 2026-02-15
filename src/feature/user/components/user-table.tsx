@@ -15,6 +15,8 @@ interface UserTableProps {
 const ScoreCell = memo(({ user }: { user: User }) => {
     const score = useMemo(() => heavyComputation(user), [user])
     return <span>{score}</span>
+}, (prevProps, nextProps) => {
+    return prevProps.user.id === nextProps.user.id
 })
 
 export function UserTable({ data, isLoading, onSelectUser }: UserTableProps) {
